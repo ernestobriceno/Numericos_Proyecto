@@ -41,3 +41,20 @@ except Exception as e:
     theta_logistic = None
     scaler_logistic = None
     feature_names_logistic = ['Recency_months', 'Frequency_times', 'Time_months']
+# --- Modelo de Regresión Lineal (Ganancias de Empresas) ---
+try:
+    theta_lineal = np.load('theta_lineal.npy')
+    mean_train_lineal = np.load('mean_train_lineal.npy')
+    std_train_lineal = np.load('std_train_lineal.npy')
+    with open('feature_names_lineal.json', 'r') as f:
+        feature_names_lineal = json.load(f)
+    print("Artefactos del modelo lineal (normalización manual) cargados exitosamente.")
+except FileNotFoundError:
+    print("Error: No se encontraron 'theta_lineal.npy', 'mean_train_lineal.npy', 'std_train_lineal.npy' o 'feature_names_lineal.json'.") 
+    print("Nota: desde el notebook el modelo ya entrenado")
+    theta_lineal = None
+    mean_train_lineal, std_train_lineal, feature_names_lineal = None, None, None
+except Exception as e:
+    print(f"Error al cargar artefactos lineales: {e}")
+    theta_lineal = None
+    mean_train_lineal, std_train_lineal, feature_names_lineal = None, None, None
